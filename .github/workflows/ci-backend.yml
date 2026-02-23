@@ -23,8 +23,8 @@ jobs:
 
       # 🔹 Build de l'image Docker
       - name: Build Docker image
-        run: docker build -t ${{ env.REG_NAME }}/${{ env.IMAGE_NAME }}:github.sha -f src/backend/Dockerfile src/backend/
+        run: docker build -t ${{ env.REG_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }} -f src/backend/Dockerfile src/backend/
 
       # 🔹 Push de l'image Docker vers le registre
       - name: Push Docker image to registry
-        run: docker push ${{ env.REG_NAME }}/${{ env.IMAGE_NAME }}:github.sha
+        run: docker push ${{ env.REG_NAME }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
