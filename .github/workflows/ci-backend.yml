@@ -7,7 +7,7 @@ on:
 
 env:
   REG_NAME: "acrinfobi22210"  # Nom du registre sans "azurecr.io"
-  IMAGE_NAME: "todo-app"  # Nom de votre image dans le registre
+  IMAGE_NAME: "todo-app-meg"  # Nom de votre image dans le registre
 
 jobs:
   build-and-push:
