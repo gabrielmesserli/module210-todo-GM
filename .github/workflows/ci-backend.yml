@@ -6,7 +6,7 @@ on:
       - main  # Déclenchement lorsque le code est poussé sur la branche main
 
 env:
-  REG_NAME: "acrinfobi22210"  # Nom du registre sans "azurecr.io"
+  REG_NAME: "acrinfobi22210.azurecr.io"  # Nom du registre sans "azurecr.io"
   IMAGE_NAME: "todo-app-meg"  # Nom de votre image dans le registre
 
 jobs:
