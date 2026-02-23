@@ -53,6 +53,13 @@ jobs:
           output_location: "." # Built app content directory - optional
           github_id_token: ${{ steps.idtoken.outputs.result }}
           ###### End of Repository/Build Configurations ######
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://todo.gabrielmesserli.emf-informatique.ch
+          configPath: ./.lighthouserc.json
+          temporaryPublicStorage: true
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -64,19 +71,8 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
-  lighthouse:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Audit URLs using Lighthouse
-        uses: treosh/lighthouse-ci-action@v12
-        with:
-          urls: |
-            https://todo.gabrielmesserli.emf-informatique.ch
-          #budgetPath: ./budget.json # test performance budgets
-          uploadArtifacts: true # save results as an action artifacts
-          configPath: ./.lighthouserc.json
-          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+
+
 
 
 
