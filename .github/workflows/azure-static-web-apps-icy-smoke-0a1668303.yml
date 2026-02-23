@@ -32,6 +32,14 @@ jobs:
                const coredemo = require('@actions/core')
                return await coredemo.getIDToken()
            result-encoding: string
+      - name: Index check
+        run: |
+          if [ -f "./src/frontend/index.html" ]; then
+            echo "Le fichier index.html existe" 
+          else
+            echo "Erreur : index.html n’existe pas!"
+            exit 1
+          fi
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
@@ -56,3 +64,19 @@ jobs:
         uses: Azure/static-web-apps-deploy@v1
         with:
           action: "close"
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit URLs using Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://todo.gabrielmesserli.emf-informatique.ch
+          #budgetPath: ./budget.json # test performance budgets
+          uploadArtifacts: true # save results as an action artifacts
+          configPath: ./.lighthouserc.json
+          temporaryPublicStorage: true # upload lighthouse report to the temporary storage
+
+
+
