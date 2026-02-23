@@ -27,4 +27,4 @@ jobs:
 
       # 🔹 Push de l'image Docker vers le registre
       - name: Push Docker image to registry
-        run: docker push ${{ env.REG_NAME }}/${{ env.IMAGE_NAME }}:latest
+        run: docker push ${{ env.REG_NAME }}/${{ env.IMAGE_NAME }}:github.sha
